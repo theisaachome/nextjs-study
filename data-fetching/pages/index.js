@@ -10,7 +10,7 @@ export default function Home(props) {
   return (
     <div className={styles.container}>
       <ul>
-        {posts.map((post)=><li key={post.id}><Link href={`/posts/${post.id}`}>{post.title}</Link></li>)}
+        {posts.map((post)=><li key={post.pid}><Link href={`/posts/${post.pid}`}>{post.title}</Link></li>)}
       </ul>
     </div>
   )
@@ -36,7 +36,7 @@ export async function  getStaticProps(){
     props:{
       posts:data.posts
     },
-    revalidate:10,// regenrate data at server site
+    revalidate:30,// regenrate data at server site
     redirect:""
   }
 }
