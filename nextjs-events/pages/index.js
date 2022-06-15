@@ -1,15 +1,23 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import EventsList from '../components/events/event-list';
-import { getFeaturedEvents } from '../dummy-data'
-import styles from '../styles/Home.module.css'
+import { getFeaturedEvents } from '../helpers/api-util';
 
-export default function Home() {
+export default function Home(props) {
 
-  const featuredEvents = getFeaturedEvents();
   return (
     <div>
-      <EventsList items={featuredEvents}/>
+      <EventsList items={props.events}/>
     </div>
   )
+}
+
+// we should use getStaticProps due to SEO since
+// user want to see fully loaded page 
+// so pre-generated must be food choice
+export const getStaticProps = async()=>{
+  const featuredEvents = await getFeaturedEvents();
+  return {
+    props:{
+      events:featuredEvents,
+    }
+  }
 }
