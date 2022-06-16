@@ -17,7 +17,8 @@ export const getStaticProps = async()=>{
   const featuredEvents = await getFeaturedEvents();
   return {
     props:{
-      events:featuredEvents,
-    }
+      events:featuredEvents    
+    },
+    revalidate:1800,// fetch again every 30 minute
   }
 }
